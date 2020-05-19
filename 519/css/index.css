@@ -4,55 +4,83 @@
  * @date    2020-05-18 22:57:57
  * @version $Id$
  */
-html,body{
-	width: 100%;
-	height: 100%;
-	background: url(../img/home1.png) no-repeat;
+html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+.dg{
+	display: none;
+}
+#mp3{
+	position: fixed;
+	top: 0.2rem;
+	right: 0.3rem;
+	width: 0.8rem;
+	height: 0.8remx;
+	z-index: 10;
+}
+#mp3 #playmusic{
+	width: 0.8rem;
+	height: 0.8rem;
+	background: url(../img/music.png) no-repeat;
 	background-size: 100% 100%;
 }
-#boxcont{
+canvas{
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.textbox{
+	position: fixed;
+	left: 0.2rem;
+	top: 0.5rem;
 	width: 70%;
-	padding-top: 1rem;
-	width: 5rem;
-	font-size: 0.3rem;
-	padding-left: 15%;
+	border:1px solid #ddd;
+	border-radius: 10px;
+	background: none;
+	min-height: 1rem;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 2px #888888;
+	padding:10px;
 }
-#boxcont input{
+.textbox p{
 	width: 100%;
-	height: 0.6rem;
-	border-radius: 0.3rem;
-	background-color: none;
-	outline: none;
-	border: 1px solid #e9e9e9;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    text-indent: 0.2rem;
-    color: #333;
-}
-.butt{
-	width: 100%;
-	height: 0.6rem;
-	border-radius: 0.3rem;
-	outline: none;
-	background: #2692ff;
-    text-align: center;
-    font-size: 0.3rem;
-    color: #fff;
-    border: none;
-    margin-top: 0.2rem;
-}
-#canvas{
-	width: 100%;
-	height: 100%;
-	display: none;
-	background: -webkit-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);
-    background: -moz-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);
-    background: -o-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);
-    background: -ms-linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);
-    background: linear-gradient(top,rgb(203,235,219) 0%,rgb(55,148,192) 120%);
-}
-#canvas canvas{
-	width: 100%;
-	height: 100%;
+	line-height: 0.6rem;
+	word-wrap:break-word;
+	word-break:normal; 
+	text-align: left;
+	text-indent: 2em;
 }

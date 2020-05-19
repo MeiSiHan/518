@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>HJ</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/index.css">
+  <meta charset="utf-8">
+  <title>HJ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/index.css">
+ <link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
 <link rel="stylesheet" type="text/css" href="css/message.css">
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/message.js"></script>
@@ -28,8 +29,91 @@
 </script>
 </head>
 <body>
-	<div id="content">
-		
-	</div>
+  <!-- Swiper -->
+  <div id="mp3">
+  	<audio id="audiomy" src="" preload="metadata" autoplay controls="controls" style="display: none"></audio>
+  	<div id="playmusic" class="playup"></div>
+  </div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" id="neb1">
+      	<canvas id="c"></canvas>
+      	<div class="textbox">
+      		<p class="textp" style="color: #08eccf;">1111111111111111111111111111111111111</p>
+      	</div>
+      	<div class="rotateimg"></div>
+      </div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 10</div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="js/swiper.min.js"></script>
+<script src='js/dat.gui.min.js'></script>
+<script src="js/index.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical',
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      on: {
+		  beforeLoopFix:function(){
+	              console.log('before');
+		  },
+		  loopFix:function(){
+		      console.log('fix');
+		  }
+      }
+    });
+    var playlist=['http://m8.music.126.net/20200519225251/ee10a5764992a1ce5bf6ccb7d3fa6c1e/ymusic/025b/525d/040c/51958d1f13e76f9787173fe94bdca8fc.mp3']
+    var audio = document.getElementById("audiomy");
+    var audioIndex = 0;
+    audio.src = playlist[0];
+    var timer = null;//全局命名定时器的名字
+    var img;//全局命名img
+    var r = 0;//全局命名角度
+    img = document.getElementById('playmusic');
+    var audioPlay = true;
+    window.onload = function () {//页面一启动就加载
+      timer = setTimeout(() => {
+        img.style.transform = 'rotate(' + (r += 30) + 'deg)';//用css的转换属性
+        img.style.transition = 'all 1s linear';//用css的过度属性，注意 时间需要和定时器启动的时间一致才能不卡帧,不要linear会一顿一顿的
+        console.log('定时器启动');
+        audio.play();
+      }, 1000);
+    };
+    
+    $("#playmusic").on('click',function(){
+    	if (audio.paused || audio.ended) {
+            audio.play();
+            audioPlay = true;
+            timer = setInterval(() => {
+	          img.style.transform = 'rotate(' + (r += 30) + 'deg)';
+	          img.style.transition = 'all 1s linear';
+	          console.log('定时器启动');
+	        }, 1000);
+        } else {
+            audio.pause();
+            audioPlay = false;
+            clearInterval(timer);
+	        console.log('定时器已停止');
+        }
+    })
+
+    
+  </script>
 </body>
 </html>
