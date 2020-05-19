@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>猜猜地名</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/message.css">
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/message.js"></script>
+
+<script type="text/javascript">
+	// (function (doc, win) {
+ //        var docEl = doc.documentElement,
+ //            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+ //            recalc = function () {
+ //                var clientWidth = docEl.clientWidth;
+ //                if (!clientWidth) return;
+ //                if(clientWidth>=640){
+ //                    docEl.style.fontSize = '100px';
+ //                }else{
+ //                    docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+ //                }
+ //            };
+
+ //        if (!doc.addEventListener) return;
+ //        win.addEventListener(resizeEvt, recalc, false);
+ //        doc.addEventListener('DOMContentLoaded', recalc, false);
+ //    })(document, window);
+
+
+
+
+    (function(doc, win) {
+    var docEl = doc.documentElement;
+    resizeEvt = 'orientationchange' in window ? 'orientationchange': 'resize';
+    recalc = function() {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        docEl.style.fontSize = 50 * (clientWidth / 375) + 'px';
+    };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+} (document, window)); 
+</script>
+</head>
+<body id="logobg">
+	<div id="boxcont">
+		<p><input type="text" name="" id="logintext" placeholder="请输入地名" autocomplete="off"></p>
+		<button class="butt" id="goto">点击进入</button>
+	</div>
+	<div id="canvas">
+		<canvas class="canvas"></canvas>
+		<input class="ui-input" type="text" />
+	</div>
+	<div style="display: none">
+		<div class="help">?</div>
+    <div class="ui">
+        <input class="ui-input" type="text" />
+        <span class="ui-return">↵</span>
+    </div>
+	</div>
+	<div class="overlay" style="display: none">
+        <div class="tabs">
+            <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span class="tabs-label">Share</span></div>
+            <div class="tabs-panels">
+                <ul class="tabs-panel commands">
+                    <li class="commands-item"><span class="commands-item-title">Text</span><span class="commands-item-info" data-demo="Hello :)">Type anything</span><span class="commands-item-action">Demo</span></li>
+                    <li class="commands-item"><span class="commands-item-title">Countdown</span><span class="commands-item-info" data-demo="#countdown 10">#countdown<span class="commands-item-mode">number</span></span><span class="commands-item-action">Demo</span></li>
+                    <li class="commands-item"><span class="commands-item-title">Time</span><span class="commands-item-info" data-demo="#time">#time</span><span class="commands-item-action">Demo</span></li>
+                    <li class="commands-item"><span class="commands-item-title">Rectangle</span><span class="commands-item-info" data-demo="#rectangle 30x15">#rectangle<span class="commands-item-mode">width x height</span></span><span class="commands-item-action">Demo</span></li>
+                    <li class="commands-item"><span class="commands-item-title">Circle</span><span class="commands-item-info" data-demo="#circle 25">#circle<span class="commands-item-mode">diameter</span></span><span class="commands-item-action">Demo</span></li>
+                    <li class="commands-item commands-item--gap"><span class="commands-item-title">Animate</span><span class="commands-item-info" data-demo="The time is|#time|#countdown 3|#icon thumbs-up"><span class="commands-item-mode">command1</span>&nbsp;|<span class="commands-item-mode">command2</span></span><span class="commands-item-action">Demo</span></li>
+                </ul>
+                <div class="tabs-panel ui-details">
+                    <div class="ui-details-content">
+                        <h1>Shape Shifter</h1>
+                        <p>
+                            An experiment by Kenneth Cachia.<br />
+                            Font Awesome</a> is being used to render all #icons.
+                        </p>
+                        <br />
+                        <p>Visit Shape Shifter to use icons.</p>
+                    </div>
+                </div>
+                <div class="tabs-panel ui-share">
+                    <div class="ui-share-content">
+                        <h1>Sharing</h1>
+                        <p>Simply add <em>?a=</em> to the current URL to share any static or animated text. Examples:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+    	// var winh=$(window).height();
+    	// $("body").height(winh)
+    	$("#goto").on('click',function(){
+    		var text=$("#logintext").val();
+    		var reg = new RegExp("文");
+    		if(text.match(reg)){
+				$.message({
+	                message: "恭喜你,输入正确",
+	                type: "success"
+	            });
+	            $("#boxcont").hide();
+	            $("#canvas").fadeIn();
+	            $(".ui-input").val("8")
+	            $(".ui-input").val("#countdown 7")
+	            $(".ui-input").click();
+	            setTimeout(function(){
+	            	window.location.href="index.html"
+	            },8000)
+	            // firstAction = false;
+             //    reset();
+             //    performAction(input.value);
+             //    checkInputWidth()
+			}else{
+				$.message({
+	                message: "请重新输入",
+	                type: "error"
+	            });
+	            $("#logintext").val("");
+			}
+    	})
+    })
+</script>
+<script type="text/javascript" src="js/nuber.js"></script>
+</body>
+</html>
